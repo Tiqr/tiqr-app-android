@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - develop
+      - TIQR-0000_remove_publish_fix_distribution
 
 jobs:
   distribute:
