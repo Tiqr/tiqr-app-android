@@ -32,6 +32,8 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: distribute to Firebase App Distribution
         run: bundle exec fastlane bundle_for_distribution
+        with:
+          groups: internal-testers-tiqr
         env:
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
           FIREBASE_APP_ID_ANDROID: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
