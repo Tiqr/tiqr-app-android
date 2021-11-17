@@ -33,7 +33,6 @@ jobs:
       - name: distribute to Firebase App Distribution
         run: bundle exec fastlane bundle_for_distribution
         env:
-          groups: internal-testers-tiqr
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
           FIREBASE_APP_ID_ANDROID: ${{ secrets.FIREBASE_APP_ID_ANDROID }}
           GIT_COMMIT: ${{ steps.short-sha.outputs.sha }}
