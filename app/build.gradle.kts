@@ -35,6 +35,17 @@ android {
         }
     }
 
+    flavorDimensions.add("type")
+    productFlavors {
+        create("acceptance") {
+            dimension = "type"
+            applicationIdSuffix = ".testing"
+        }
+        create("production") {
+            dimension = "type"
+        }
+    }
+
     buildFeatures {
         dataBinding = true
     }
