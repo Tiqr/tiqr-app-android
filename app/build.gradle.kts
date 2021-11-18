@@ -35,14 +35,14 @@ android {
         }
     }
 
-    flavorDimensions.add("releaseType")
+    flavorDimensions.add("type")
     productFlavors {
         create("acceptance") {
-            dimension = "releaseType"
+            dimension = "type"
             applicationIdSuffix = ".testing"
         }
         create("production") {
-            dimension = "releaseType"
+            dimension = "type"
         }
     }
 
