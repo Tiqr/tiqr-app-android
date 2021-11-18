@@ -5,5 +5,5 @@
         android:width="72dp"
         android:height="36dp"
         android:gravity="center"
-        android:drawable="@drawable/logo_eduid_big" />
+        android:drawable="@drawable/logo_tiqr_small" />
 </layer-list>
