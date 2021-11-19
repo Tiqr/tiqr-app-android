@@ -86,4 +86,8 @@
         <item name="android:maxLength">1</item>
         <item name="android:maxLines">1</item>
     </style>
+
+    <style name="TopBarIconSmall">
+        <item name="android:background">@drawable/appbar_background</item>
+    </style>
 </resources>
