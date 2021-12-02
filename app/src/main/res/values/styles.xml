@@ -90,4 +90,10 @@
     <style name="TopBarIconSmall">
         <item name="android:background">@drawable/appbar_background</item>
     </style>
+
+    <style name="ScanButtonIcon" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="android:textColor">@color/scanColor</item>
+        <item name="android:fontFamily">@font/nunito_extrabold</item>
+    </style>
+
 </resources>
