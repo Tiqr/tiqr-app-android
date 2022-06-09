@@ -21,6 +21,7 @@ android {
         testInstrumentationRunner = "org.tiqr.authenticator.runner.HiltAndroidTestRunner"
 
         manifestPlaceholders["tiqr_config_base_url"] = "https://demo.tiqr.org"
+        manifestPlaceholders["tiqr_config_token_exchange_base_url"] = "https://tx.tiqr.org/"
         manifestPlaceholders["tiqr_config_protocol_version"] = "2"
         manifestPlaceholders["tiqr_config_protocol_compatibility_mode"] =  "true"
         manifestPlaceholders["tiqr_config_enforce_challenge_host"] = "tiqr.nl"

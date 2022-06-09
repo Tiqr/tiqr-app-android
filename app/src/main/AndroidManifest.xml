@@ -60,6 +60,7 @@
 
         <!-- Configuration -->
         <meta-data android:name="tiqr_config_base_url" android:value="${tiqr_config_base_url}"/>
+        <meta-data android:name="tiqr_config_token_exchange_base_url" android:value="${tiqr_config_token_exchange_base_url}"/>
         <meta-data android:name="tiqr_config_protocol_version" android:value="${tiqr_config_protocol_version}"/>
         <meta-data android:name="tiqr_config_protocol_compatibility_mode" android:value="${tiqr_config_protocol_compatibility_mode}"/>
         <meta-data android:name="tiqr_config_enroll_path_param" android:value="${tiqr_config_enroll_path_param}"/>
