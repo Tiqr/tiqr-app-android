@@ -68,6 +68,7 @@
         <meta-data android:name="tiqr_config_enroll_scheme" android:value="${tiqr_config_enroll_scheme}"/>
         <meta-data android:name="tiqr_config_auth_scheme" android:value="${tiqr_config_auth_scheme}"/>
         <meta-data android:name="tiqr_config_token_exchange_enabled" android:value="${tiqr_config_token_exchange_enabled}"/>
+        <meta-data android:name="tiqr_config_enforce_challenge_hosts" android:value="${tiqr_config_enforce_challenge_hosts}" />
 
         <!-- Disable analytics -->
         <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
