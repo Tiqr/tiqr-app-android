@@ -12,7 +12,7 @@ Install _fastlane_ using
 ```
 [sudo] gem install fastlane -NV
 ```
-or alternatively using `brew install fastlane`
+or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## Android
@@ -26,6 +26,11 @@ Runs all the tests
 fastlane android storebuild
 ```
 Build store package
+### android bundle_for_distribution
+```
+fastlane android bundle_for_distribution
+```
+Build app and upload to Firebase App Distribution
 
 ----
 
