@@ -49,22 +49,22 @@ platform :android do
 
 
   desc "Build app and upload to Firebase App Distribution"
-  lane :bundle_for_distribution  do
-      gradle(task: "clean assembleAcceptance",
+  lane :bundle_for_distribution  do  |options|
+    version = options[:version]
+    gradle(task: "clean assemble" + version,
         properties: {
-          "android.injected.signing.store.file" => 'app_distribution_keystore.jks',
-          "android.injected.signing.store.password" => 'tiqrtiqr',
-          "android.injected.signing.key.alias" => 'tiqr',
-          "android.injected.signing.key.password" => 'tiqrtiqr',
-          "commit" => ENV["GIT_COMMIT"],
+            "android.injected.signing.store.file" => 'app_distribution_keystore.jks',
+            "android.injected.signing.store.password" => 'tiqrtiqr',
+            "android.injected.signing.key.alias" => 'tiqr',
+            "android.injected.signing.key.password" => 'tiqrtiqr',
+            "commit" => ENV["GIT_COMMIT"],
         }
-
-      )
-      firebase_app_distribution(
-          app: ENV["FIREBASE_APP_ID_ANDROID"],
-          firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
-          groups: "internal-testers-tiqr",
-          release_notes: `printf 'Build #%s [%s]' $BUILD_NUMBER $GIT_COMMIT` + "\n\nChanges:\n" + `git log --pretty=format:"* %b [%h]" --merges --first-parent develop --max-count 50`,
-      )
+    )
+    firebase_app_distribution(
+        app: ENV["FIREBASE_APP_ID_ANDROID"],
+        firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+        groups: "internal-testers-tiqr",
+        release_notes: `printf 'Build #%s [%s]' $BUILD_NUMBER $GIT_COMMIT` + "\n\nChanges:\n" + `git log --pretty=format:"* %b [%h]" --merges --first-parent develop --max-count 50`,
+    )
   end
 end
