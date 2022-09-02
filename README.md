@@ -9,3 +9,7 @@ tiqr client for Android
 - Latest Android SDK Tools and build tools.
 - Android Studio 4.2 and up.
 - Add https://github.com/Tiqr/tiqr-app-core-android as submodule
+```
+git submodule init
+git submodule update
+```
