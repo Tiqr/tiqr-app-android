@@ -6,6 +6,10 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+if (JavaVersion.current() < JavaVersion.VERSION_11) {
+    throw GradleException("Please use JDK ${JavaVersion.VERSION_11} or above")
+}
+
 android {
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
     buildToolsVersion = libs.versions.android.buildTools.get()
@@ -59,8 +63,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kapt {
@@ -72,7 +76,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     lint {
