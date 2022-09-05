@@ -64,3 +64,6 @@ lint/tmp/
 
 .bundle/
 vendor/
+
+keystore.jks
+keystore.jks.base64.txt

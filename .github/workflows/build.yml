@@ -1,0 +1,35 @@
+name: Debug Build
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+# Where will they run
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        submodules: recursive
+    - uses: actions/setup-java@v2
+      with:
+        java-version: 11
+        distribution: 'temurin'
+        cache: 'gradle'
+    - name: Build org.tiqr.authenticator APK
+      run: bash ./gradlew assembleDebug --stacktrace
+    - name: Build org.tiqr.authenticator.testing APK
+      run: bash ./gradlew assembleAcceptance --stacktrace
+    - name: Upload APK
+      uses: actions/upload-artifact@v1
+      with:
+        name: production-debug
+        path: app/build/outputs/apk/production/debug/app-production-debug.apk
+    - name: Upload testing APK
+      uses: actions/upload-artifact@v1
+      with:
+        name: testing-debug
+        path: app/build/outputs/apk/acceptance/debug/app-acceptance-debug.apk
