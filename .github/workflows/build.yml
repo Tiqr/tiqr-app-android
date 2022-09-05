@@ -20,16 +20,16 @@ jobs:
         distribution: 'temurin'
         cache: 'gradle'
     - name: Build org.tiqr.authenticator APK
-      run: bash ./gradlew assembleDebug --stacktrace
+      run: bash ./gradlew assembleProductionRelease --stacktrace
     - name: Build org.tiqr.authenticator.testing APK
-      run: bash ./gradlew assembleAcceptance --stacktrace
+      run: bash ./gradlew assembleAcceptanceRelease --stacktrace
     - name: Upload APK
       uses: actions/upload-artifact@v1
       with:
-        name: production-debug
-        path: app/build/outputs/apk/production/debug/app-production-debug.apk
+        name: app-production-release-unsigned
+        path: app/build/outputs/apk/production/release/app-production-release-unsigned.apk
     - name: Upload testing APK
       uses: actions/upload-artifact@v1
       with:
-        name: testing-debug
-        path: app/build/outputs/apk/acceptance/debug/app-acceptance-debug.apk
+        name: app-acceptance-release-unsigned
+        path: app/build/outputs/apk/acceptance/release/app-acceptance-release-unsigned.apk
