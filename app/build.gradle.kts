@@ -6,14 +6,33 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+fun String.runCommand(workingDir: File = file("./")): String {
+    val parts = this.split("\\s".toRegex())
+    val proc = ProcessBuilder(*parts.toTypedArray())
+        .directory(workingDir)
+        .redirectOutput(ProcessBuilder.Redirect.PIPE)
+        .redirectError(ProcessBuilder.Redirect.PIPE)
+        .start()
+
+    proc.waitFor(1, TimeUnit.MINUTES)
+    return proc.inputStream.bufferedReader().readText().trim()
+}
+
 android {
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
     buildToolsVersion = libs.versions.android.buildTools.get()
 
+    val gitTagCount = "git tag --list".runCommand().split('\n').size
+    val gitTag = "git describe --tags --dirty".runCommand()
+
     defaultConfig {
         applicationId = "org.tiqr.authenticator"
-        versionCode = 30
-        versionName = "4.0.0"
+        //add 22 to versioncode, to match previous manual releases
+        versionCode = gitTagCount.toInt()+22
+        versionName = gitTag.toString().trim().drop(1)
+
+        logger.lifecycle("Building version "+versionName+"("+versionCode+")", "info")
+
 
         minSdk = libs.versions.android.sdk.min.get().toInt()
         targetSdk = libs.versions.android.sdk.target.get().toInt()
