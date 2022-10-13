@@ -67,3 +67,7 @@ vendor/
 
 keystore.jks
 keystore.jks.base64.txt
+encrypted_private_key_path
+*.jar
+*.keystore
+*.pem
