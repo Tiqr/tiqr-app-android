@@ -33,7 +33,6 @@ import android.app.Application
 import coil.Coil
 import coil.ImageLoader
 import coil.ImageLoaderFactory
-import coil.util.CoilUtils
 import dagger.hilt.android.HiltAndroidApp
 import okhttp3.OkHttpClient
 import org.tiqr.authenticator.BuildConfig
@@ -62,12 +61,11 @@ class TiqrApplication : Application(), ImageLoaderFactory {
      */
     override fun newImageLoader(): ImageLoader {
         return ImageLoader.Builder(context = this)
-                .crossfade(enable = true)
-                .okHttpClient {
-                    imageOkHttpClient
-                            .cache(CoilUtils.createDefaultCache(context = this))
-                            .build()
-                }
-                .build()
+            .crossfade(enable = true)
+            .okHttpClient {
+                imageOkHttpClient
+                    .build()
+            }
+            .build()
     }
 }
