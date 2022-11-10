@@ -32,10 +32,10 @@ android {
     defaultConfig {
         applicationId = "org.tiqr.authenticator"
         //add 22 to versioncode, to match previous manual releases
-        versionCode = gitTagCount.toInt()+22
+        versionCode = gitTagCount.toInt() + 22
         versionName = gitTag.toString().trim().drop(1)
 
-        logger.lifecycle("Building version "+versionName+"("+versionCode+")", "info")
+        logger.lifecycle("Building version " + versionName + "(" + versionCode + ")", "info")
 
 
         minSdk = libs.versions.android.sdk.min.get().toInt()
@@ -46,8 +46,9 @@ android {
         manifestPlaceholders["tiqr_config_base_url"] = "https://demo.tiqr.org"
         manifestPlaceholders["tiqr_config_token_exchange_base_url"] = "https://tx.tiqr.org/"
         manifestPlaceholders["tiqr_config_protocol_version"] = "2"
-        manifestPlaceholders["tiqr_config_protocol_compatibility_mode"] =  "true"
-        manifestPlaceholders["tiqr_config_enforce_challenge_hosts"] = "tiqr.nl,tiqr.org,surfconext.nl"
+        manifestPlaceholders["tiqr_config_protocol_compatibility_mode"] = "true"
+        manifestPlaceholders["tiqr_config_enforce_challenge_hosts"] =
+            "tiqr.nl,tiqr.org,surfconext.nl"
         manifestPlaceholders["tiqr_config_enroll_path_param"] = "tiqrenroll"
         manifestPlaceholders["tiqr_config_auth_path_param"] = "tiqrauth"
         manifestPlaceholders["tiqr_config_enroll_scheme"] = "tiqrenroll"
@@ -55,7 +56,24 @@ android {
         manifestPlaceholders["tiqr_config_token_exchange_enabled"] = "true"
 
         // only package supported languages
-        resourceConfigurations += listOf("en", "da", "de", "es", "fr", "fy", "hr", "ja", "lt", "nl", "no", "ro", "sk", "sl", "sr", "tr" )
+        resourceConfigurations += listOf(
+            "en",
+            "da",
+            "de",
+            "es",
+            "fr",
+            "fy",
+            "hr",
+            "ja",
+            "lt",
+            "nl",
+            "no",
+            "ro",
+            "sk",
+            "sl",
+            "sr",
+            "tr"
+        )
     }
 
     buildTypes {
@@ -99,7 +117,7 @@ android {
     }
 
     lint {
-        isAbortOnError = false
+        abortOnError = false
     }
 }
 
