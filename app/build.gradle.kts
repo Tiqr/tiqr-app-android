@@ -28,12 +28,13 @@ android {
 
     val gitTagCount = "git tag --list".runCommand().split('\n').size
     val gitTag = "git describe --tags --dirty".runCommand()
+    val gitCoreSha = "git submodule status".runCommand().substring(0, 8)
 
     defaultConfig {
         applicationId = "org.tiqr.authenticator"
         //add 22 to versioncode, to match previous manual releases
         versionCode = gitTagCount.toInt() + 22
-        versionName = gitTag.toString().trim().drop(1)
+        versionName = gitTag.trim().drop(1) + " core($gitCoreSha)"
 
         logger.lifecycle("Building version " + versionName + "(" + versionCode + ")", "info")
 
