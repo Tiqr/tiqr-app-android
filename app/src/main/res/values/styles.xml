@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryColor</item>
@@ -15,6 +15,11 @@
         <item name="android:textColorLink">@color/linkColor</item>
         <item name="android:textViewStyle">@style/AppTheme.TextView</item>
         <item name="materialCardViewStyle">@style/AppTheme.Card</item>
+        <item name="actionBarTheme">@style/TiqrActionBar</item>
+    </style>
+
+    <style name="TiqrActionBar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:background">@color/actionbarBackground</item>
     </style>
 
     <style name="AppTheme.Splash" parent="Theme.SplashScreen">
