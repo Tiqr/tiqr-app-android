@@ -47,6 +47,7 @@ class TiqrApplication : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
 
+        TiqrConfig.initialize(this)
         // Setup Timber
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
