@@ -36,6 +36,7 @@ import coil.ImageLoaderFactory
 import dagger.hilt.android.HiltAndroidApp
 import okhttp3.OkHttpClient
 import org.tiqr.authenticator.BuildConfig
+import org.tiqr.data.model.TiqrConfig
 import timber.log.Timber
 import javax.inject.Inject
 
