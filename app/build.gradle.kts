@@ -49,7 +49,7 @@ android {
         manifestPlaceholders["tiqr_config_protocol_version"] = "2"
         manifestPlaceholders["tiqr_config_protocol_compatibility_mode"] = "true"
         manifestPlaceholders["tiqr_config_enforce_challenge_hosts"] =
-            "tiqr.nl,tiqr.org,surfconext.nl"
+            "tiqr.nl,tiqr.org,surfconext.nl,kanazawa-u.ac.jp"
         manifestPlaceholders["tiqr_config_enroll_path_param"] = "tiqrenroll"
         manifestPlaceholders["tiqr_config_auth_path_param"] = "tiqrauth"
         manifestPlaceholders["tiqr_config_enroll_scheme"] = "tiqrenroll"
