@@ -11,7 +11,7 @@ hilt = "2.44"
 navigation = "2.5.3"
 room = "2.5.0-beta01"
 lifecycle = "2.5.1"
-camera = "1.3.0-alpha03"
+camera = "1.3.0-alpha04"
 
 okhttp = "4.9.2"
 retrofit = "2.9.0"
