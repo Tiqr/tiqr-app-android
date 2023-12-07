@@ -57,8 +57,8 @@ android {
         manifestPlaceholders["tiqr_config_enforce_challenge_hosts"] = ""
         manifestPlaceholders["tiqr_config_enroll_path_param"] = "tiqrenroll"
         manifestPlaceholders["tiqr_config_auth_path_param"] = "tiqrauth"
-        manifestPlaceholders["tiqr_config_enroll_scheme"] = "tiqrtestenroll"
-        manifestPlaceholders["tiqr_config_auth_scheme"] = "tiqrtestauth"
+        manifestPlaceholders["tiqr_config_enroll_scheme"] = "tiqrenroll"
+        manifestPlaceholders["tiqr_config_auth_scheme"] = "tiqrauth"
         manifestPlaceholders["tiqr_config_token_exchange_enabled"] = "true"
 
         // only package supported languages
