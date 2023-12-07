@@ -1,13 +1,16 @@
 plugins {
     id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
-    id("kotlin-parcelize")
+    id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
+    //Requried for data binding
+    kotlin("kapt")
+
 }
 
-if (JavaVersion.current() < JavaVersion.VERSION_11) {
-    throw GradleException("Please use JDK ${JavaVersion.VERSION_11} or above")
+if (JavaVersion.current() < JavaVersion.VERSION_17) {
+    throw GradleException("Please use JDK ${JavaVersion.VERSION_17} or above")
 }
 
 fun String.runCommand(workingDir: File = file("./")): String {
@@ -22,9 +25,12 @@ fun String.runCommand(workingDir: File = file("./")): String {
     return proc.inputStream.bufferedReader().readText().trim()
 }
 
+val isAppDebuggable = System.getenv("CI") != "true"
+
 android {
+    namespace = "org.tiqr.authenticator"
+
     compileSdk = libs.versions.android.sdk.compile.get().toInt()
-    buildToolsVersion = libs.versions.android.buildTools.get()
 
     val gitTagCount = "git tag --list".runCommand().split('\n').size
     val gitTag = "git describe --tags --dirty".runCommand()
@@ -33,10 +39,10 @@ android {
     defaultConfig {
         applicationId = "org.tiqr.authenticator"
         //add 22 to versioncode, to match previous manual releases
-        versionCode = gitTagCount.toInt() + 22
+        versionCode = gitTagCount + 22
         versionName = gitTag.trim().drop(1) + " core($gitCoreSha)"
 
-        logger.lifecycle("Building version " + versionName + "(" + versionCode + ")", "info")
+        logger.lifecycle("Building version $versionName($versionCode)", "info")
 
 
         minSdk = libs.versions.android.sdk.min.get().toInt()
@@ -77,43 +83,37 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
-
-    flavorDimensions.add("type")
-    productFlavors {
-        create("acceptance") {
-            dimension = "type"
+        getByName("debug") {
+            isDebuggable = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             applicationIdSuffix = ".testing"
         }
-        create("production") {
-            dimension = "type"
+        getByName("release") {
+            isDebuggable = isAppDebuggable
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            signingConfig = if (isAppDebuggable) {
+                signingConfigs.getByName("debug")
+            } else {
+                null
+            }
         }
     }
 
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kapt {
-        correctErrorTypes = true
-        useBuildCache = true
-        javacOptions {
-            option("-Xmaxerrs", 1000)
-        }
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+    kotlin {
+        jvmToolchain(17)
     }
 
     lint {
@@ -122,12 +122,6 @@ android {
 }
 
 dependencies {
-
-    repositories {
-        google()
-        mavenCentral()
-    }
-
     implementation(project(":data"))
     implementation(project(":core"))
 
@@ -155,14 +149,14 @@ dependencies {
 
     implementation(libs.dagger.hilt.android)
     implementation(libs.dagger.hilt.fragment)
-    kapt(libs.dagger.hilt.compiler)
+    ksp(libs.dagger.hilt.compiler)
 
     implementation(libs.permission)
     implementation(libs.coil)
     implementation(libs.betterLink)
 
     api(libs.moshi.moshi)
-    kapt(libs.moshi.codegen)
+    ksp(libs.moshi.codegen)
 
     api(libs.okhttp.okhttp)
     api(libs.okhttp.logging)
@@ -183,7 +177,7 @@ dependencies {
     androidTestImplementation(libs.kotlinx.coroutines.test)
 
     androidTestImplementation(libs.dagger.hilt.testing)
-    kaptAndroidTest(libs.dagger.hilt.compiler)
+    kspAndroidTest(libs.dagger.hilt.compiler)
 }
 
 // Disable analytics
