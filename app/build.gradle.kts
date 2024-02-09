@@ -59,7 +59,7 @@ android {
         manifestPlaceholders["tiqr_config_auth_path_param"] = "tiqrauth"
         manifestPlaceholders["tiqr_config_enroll_scheme"] = "tiqrenroll"
         manifestPlaceholders["tiqr_config_auth_scheme"] = "tiqrauth"
-        manifestPlaceholders["tiqr_config_token_exchange_enabled"] = "true"
+        manifestPlaceholders["tiqr_config_token_exchange_enabled"] = "false"
 
         // only package supported languages
         resourceConfigurations += listOf(
