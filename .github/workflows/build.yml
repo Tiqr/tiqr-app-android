@@ -5,31 +5,36 @@ on:
     branches:
       - main
       - develop
-# Where will they run
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
         submodules: recursive
-    - uses: actions/setup-java@v2
+    - uses: actions/setup-java@v4
       with:
         java-version: 17
         distribution: 'temurin'
         cache: 'gradle'
-    - name: Build org.tiqr.authenticator APK
-      run: bash ./gradlew assembleRelease --stacktrace
-    - name: Build org.tiqr.authenticator.testing APK
-      run: bash ./gradlew assembleDebug --stacktrace
-    - name: Upload APK
-      uses: actions/upload-artifact@v1
+    - name: Build org.tiqr.authenticator.staging bundle for Play Store upload
+      run: ./gradlew bundleDebug
+    - name: Sign org.tiqr.authenticator.staging bundle with developer key for Play Store upload
+      id: sign_aab
+      uses: r0adkll/sign-android-release@v1
       with:
-        name: org.tiqr.authenticator
-        path: app/build/outputs/apk/release/app-release-unsigned.apk
-    - name: Upload testing APK
-      uses: actions/upload-artifact@v1
+        releaseDirectory: app/build/outputs/bundle/debug/
+        signingKeyBase64: ${{ secrets.SIGNINGKEYBASE64 }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEYSTOREPASSWORD }}
+        keyPassword: ${{ secrets.KEYPASSWORD }}
+    - name: Publish org.tiqr.authenticator.testing to Play Store Internal Test track
+      uses: r0adkll/upload-google-play@v1
       with:
-        name: org.tiqr.authenticator.testing
-        path: app/build/outputs/apk/debug/app-debug.apk
+        serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_TESTING }}
+        packageName: org.tiqr.authenticator.staging
+        releaseFiles: ${{ steps.sign_aab.outputs.signedReleaseFile }}
+        changesNotSentForReview: true
+        track: internal
+        status: completed
