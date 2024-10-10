@@ -84,7 +84,7 @@ android {
 
     buildTypes {
         getByName("debug") {
-            isDebuggable = true
+            isDebuggable = isAppDebuggable
             isMinifyEnabled = false
             isShrinkResources = false
             applicationIdSuffix = ".testing"
