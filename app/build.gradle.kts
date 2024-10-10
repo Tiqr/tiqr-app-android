@@ -88,6 +88,11 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             applicationIdSuffix = ".testing"
+            signingConfig = if (isAppDebuggable) {
+                signingConfigs.getByName("debug")
+            } else {
+                null
+            }
         }
         getByName("release") {
             isDebuggable = isAppDebuggable
