@@ -87,7 +87,7 @@ android {
             isDebuggable = isAppDebuggable
             isMinifyEnabled = false
             isShrinkResources = false
-            applicationIdSuffix = ".testing"
+            applicationIdSuffix = ".staging"
             signingConfig = if (isAppDebuggable) {
                 signingConfigs.getByName("debug")
             } else {

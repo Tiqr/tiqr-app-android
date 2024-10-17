@@ -18,9 +18,9 @@ jobs:
         java-version: 17
         distribution: 'temurin'
         cache: 'gradle'
-    - name: Build org.tiqr.authenticator.testing Bundle for Play store upload
+    - name: Build org.tiqr.authenticator.staging Bundle for Play store upload
       run: ./gradlew bundleDebug
-    - name: Sign org.tiqr.authenticator.testing Bundle with developer key for Play store upload
+    - name: Sign org.tiqr.authenticator.staging Bundle with developer key for Play store upload
       id: sign_aab
       uses: r0adkll/sign-android-release@v1
       with:
