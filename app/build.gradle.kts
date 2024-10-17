@@ -84,10 +84,15 @@ android {
 
     buildTypes {
         getByName("debug") {
-            isDebuggable = true
+            isDebuggable = isAppDebuggable
             isMinifyEnabled = false
             isShrinkResources = false
-            applicationIdSuffix = ".testing"
+            applicationIdSuffix = ".staging"
+            signingConfig = if (isAppDebuggable) {
+                signingConfigs.getByName("debug")
+            } else {
+                null
+            }
         }
         getByName("release") {
             isDebuggable = isAppDebuggable
