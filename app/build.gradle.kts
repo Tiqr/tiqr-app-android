@@ -35,11 +35,12 @@ android {
     val gitTagCount = "git tag --list".runCommand().split('\n').size
     val gitTag = "git describe --tags --dirty".runCommand()
     val gitCoreSha = "git submodule status".runCommand().substring(0, 8)
+    val ciRunCount = System.getenv("GITHUB_RUN_NUMBER")?.toInt() ?: 0
 
     defaultConfig {
         applicationId = "org.tiqr.authenticator"
         //add 22 to versioncode, to match previous manual releases
-        versionCode = gitTagCount + 22
+        versionCode = gitTagCount + 22 + ciRunCount
         versionName = gitTag.trim().drop(1) + " core($gitCoreSha)"
 
         logger.lifecycle("Building version $versionName($versionCode)", "info")
