@@ -38,6 +38,13 @@
             {
               "client_id": "1092033875165-e57fu2g81c5rqo6kopl72g3qbehgntom.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1092033875165-edfvp74012h0ad10o5g5n50u2le3rl88.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.tiqr.surfnet.testing"
+              }
             }
           ]
         }
@@ -45,9 +52,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1092033875165:android:5a837361fd416ed4d05f34",
+        "mobilesdk_app_id": "1:1092033875165:android:7dafb2cda2a82d30d05f34",
         "android_client_info": {
-          "package_name": "org.tiqr.authenticator.testing"
+          "package_name": "org.tiqr.authenticator.staging"
         }
       },
       "oauth_client": [
@@ -67,6 +74,13 @@
             {
               "client_id": "1092033875165-e57fu2g81c5rqo6kopl72g3qbehgntom.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1092033875165-edfvp74012h0ad10o5g5n50u2le3rl88.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.tiqr.surfnet.testing"
+              }
             }
           ]
         }
