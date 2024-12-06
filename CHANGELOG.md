@@ -2,7 +2,7 @@
 
 ## [Unreleased](https://github.com/SURFnet/tiqr-app-android/tree/HEAD)
 
-[4.1.0]
+[4.1.1]
 
 - Allow logging in without opening the Push Notification
 
