@@ -4,7 +4,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
-    //Requried for data binding
+    //Required for data binding
     kotlin("kapt")
 
 }
