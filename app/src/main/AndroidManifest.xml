@@ -93,6 +93,9 @@
         <meta-data
             android:name="tiqr_config_enforce_challenge_hosts"
             android:value="${tiqr_config_enforce_challenge_hosts}" />
+        <meta-data
+            android:name="tiqr_config_in_app_update_check_enabled"
+            android:value="${tiqr_config_in_app_update_check_enabled}" />
 
         <!-- Disable analytics -->
         <meta-data
