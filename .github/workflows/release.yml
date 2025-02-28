@@ -29,6 +29,7 @@ jobs:
         keyAlias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEYSTOREPASSWORD }}
         keyPassword: ${{ secrets.KEYPASSWORD }}
+        buildToolsVersion: 35.0.0
 
     - name: Build Changelog
       id: changelog
