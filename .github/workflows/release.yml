@@ -22,7 +22,7 @@ jobs:
       run: ./gradlew bundleRelease
     - name: Sign tiqr app Bundle
       id: sign_aab
-      uses: ilharp/sign-android-release@v1
+      uses: ilharp/sign-android-release@v2
       with:
         releaseDir: app/build/outputs/bundle/release/
         signingKey: ${{ secrets.SIGNINGKEYBASE64 }}
