@@ -1,0 +1,38 @@
+---
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      github-actions:
+        applies-to: version-updates
+        patterns:
+          - "*"
+  # Maintain dependencies for gradle
+  - package-ecosystem: "gradle"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    directories:
+      - "/"
+      - "/app/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 25
+    groups:
+      gradle-prod:
+        applies-to: version-updates
+        dependency-type: production
+        update-types:
+          - "minor"
+          - "patch"
+      gradle-dev:
+        applies-to: version-updates
+        dependency-type: development
+        update-types:
+          - "minor"
+          - "patch"
+

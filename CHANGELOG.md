@@ -2,6 +2,11 @@
 
 ## [Unreleased](https://github.com/SURFnet/tiqr-app-android/tree/HEAD)
 
+[4.2.0]
+
+- Notify users if a newer version of this app is available
+- Compatibility with latest Android version 
+
 [4.1.2]
 
 - Fix rare chashes when scanning QR codes

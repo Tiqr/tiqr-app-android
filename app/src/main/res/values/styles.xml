@@ -9,7 +9,7 @@
         <item name="colorOnPrimary">@color/primaryTextColor</item>
         <item name="colorError">@color/errorColor</item>
         <item name="android:colorBackground">@color/grey_50</item>
-
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:autofilledHighlight" tools:ignore="NewApi">@android:color/transparent</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="android:textColorLink">@color/linkColor</item>
