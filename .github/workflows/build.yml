@@ -9,11 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0
         submodules: recursive
-    - uses: actions/setup-java@v4
+    - uses: actions/setup-java@v5
       with:
         java-version: 17
         distribution: 'temurin'
@@ -23,7 +23,7 @@ jobs:
     - name: Sign org.tiqr.authenticator.staging bundle with developer key for Play Store upload
       if: ${{ !startsWith(github.ref_name, 'dependabot/') }}
       id: sign_aab
-      uses: ilharp/sign-android-release@v1
+      uses: ilharp/sign-android-release@v2
       with:
         releaseDir: app/build/outputs/bundle/debug/
         signingKey: ${{ secrets.SIGNINGKEYBASE64 }}
