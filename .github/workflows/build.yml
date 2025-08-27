@@ -18,6 +18,14 @@ jobs:
         java-version: 17
         distribution: 'temurin'
         cache: 'gradle'
+    - uses: actions/cache@v3
+      with:
+        path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+            ${{ runner.os }}-gradle-
     - name: Build org.tiqr.authenticator.staging bundle for Play Store upload
       run: ./gradlew bundleDebug
     - name: Sign org.tiqr.authenticator.staging bundle with developer key for Play Store upload
