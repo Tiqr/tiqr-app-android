@@ -39,8 +39,8 @@ android {
 
     defaultConfig {
         applicationId = "org.tiqr.authenticator"
-        //add 22 to versioncode, to match previous manual releases
-        versionCode = gitTagCount + 22 + ciRunCount
+        //add 24 to versioncode, to match previous manual releases
+        versionCode = gitTagCount + 24 + ciRunCount
         versionName = gitTag.trim().drop(1) + " core($gitCoreSha)"
 
         logger.lifecycle("Building version $versionName($versionCode)", "info")
