@@ -12,7 +12,7 @@ ksp-plugin = "2.2.10-2.0.2"
 hilt = "2.57.1"
 navigation = "2.9.3"
 room = "2.7.2"
-lifecycle = "2.9.2"
+lifecycle = "2.9.3"
 camera = "1.4.2"
 
 okhttp = "4.12.0"
