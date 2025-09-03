@@ -2,7 +2,7 @@
 android-sdk-compile = "36"
 android-sdk-target = "36"
 android-sdk-min = "24"
-agp = "8.12.2"
+agp = "8.13.0"
 gms = "4.4.3"
 
 kotlin = "2.2.10"
