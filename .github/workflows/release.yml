@@ -31,11 +31,25 @@ jobs:
         keyPassword: ${{ secrets.KEYPASSWORD }}
         buildToolsVersion: 35.0.0
 
+    - name: Build tiqr apk
+      run: ./gradlew assembleRelease
+    - name: Sign APK
+      id: sign_apk
+      uses: r0adkll/sign-android-release@v1
+      with:
+        releaseDirectory: app/build/outputs/apk/release/
+        signingKeyBase64: ${{ secrets.SIGNINGKEYBASE64 }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEYSTOREPASSWORD }}
+        keyPassword: ${{ secrets.KEYPASSWORD }}
+      env:
+       BUILD_TOOLS_VERSION: "35.0.0"
+
     - name: Build Changelog
       id: changelog
       uses: ardalanamini/auto-changelog@v4
 
-    - name: Create release
+    - name: Create Github release
       uses: actions/create-release@v1
       id: create_release
       with:
@@ -47,6 +61,16 @@ jobs:
           ${{ steps.changelog.outputs.changelog }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
+
+    - name: Add apk to Github Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.sign_apk.outputs.signedReleaseFile }}
+        asset_name: tiqr-${{ github.ref_name }}.apk
+        asset_content_type: application/zip
 
     - name: Publish to play store test track
       uses: r0adkll/upload-google-play@v1
