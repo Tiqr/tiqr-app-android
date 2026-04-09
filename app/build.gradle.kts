@@ -1,31 +1,24 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
-    //Required for data binding
-    kotlin("kapt")
-
 }
 
-if (JavaVersion.current() < JavaVersion.VERSION_17) {
-    throw GradleException("Please use JDK ${JavaVersion.VERSION_17} or above")
+if (JavaVersion.current() < JavaVersion.VERSION_21) {
+    throw GradleException("Please use JDK ${JavaVersion.VERSION_21} or above")
 }
 
 fun String.runCommand(workingDir: File = file("./")): String {
-    val parts = this.split("\\s".toRegex())
-    val proc = ProcessBuilder(*parts.toTypedArray())
-        .directory(workingDir)
-        .redirectOutput(ProcessBuilder.Redirect.PIPE)
-        .redirectError(ProcessBuilder.Redirect.PIPE)
-        .start()
-
-    proc.waitFor(1, TimeUnit.MINUTES)
-    return proc.inputStream.bufferedReader().readText().trim()
+    return providers.exec {
+        commandLine(*this@runCommand.split("\\s".toRegex()).toTypedArray())
+        workingDir(workingDir)
+    }.standardOutput.asText.get().trim()
 }
 
-val isAppDebuggable = System.getenv("CI") != "true"
+val isAppDebuggable = providers.environmentVariable("CI").orNull != "true"
 
 android {
     namespace = "org.tiqr.authenticator"
@@ -35,7 +28,7 @@ android {
     val gitTagCount = "git tag --list".runCommand().split('\n').size
     val gitTag = "git describe --tags --dirty".runCommand()
     val gitCoreSha = "git submodule status".runCommand().substring(0, 8)
-    val ciRunCount = System.getenv("GITHUB_RUN_NUMBER")?.toInt() ?: 0
+    val ciRunCount = providers.environmentVariable("GITHUB_RUN_NUMBER").map { it.toInt() }.getOrElse(0)
 
     defaultConfig {
         applicationId = "org.tiqr.authenticator"
@@ -100,7 +93,11 @@ android {
             isDebuggable = isAppDebuggable
             isMinifyEnabled = false
             isShrinkResources = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
             signingConfig = if (isAppDebuggable) {
                 signingConfigs.getByName("debug")
             } else {
@@ -110,24 +107,25 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        dataBinding = false
+        viewBinding = true
         buildConfig = true
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
-    kotlin {
-        jvmToolchain(17)
-    }
 
     lint {
         abortOnError = false
     }
 }
 
+kotlin {
+    jvmToolchain(21)
+}
 dependencies {
     implementation(project(":data"))
     implementation(project(":core"))
