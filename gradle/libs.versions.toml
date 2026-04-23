@@ -2,15 +2,15 @@
 android-sdk-compile = "36"
 android-sdk-target = "36"
 android-sdk-min = "24"
-agp = "9.1.0"
+agp = "9.2.0"
 gms = "4.4.4"
 
-kotlin = "2.3.20"
+kotlin = "2.3.21"
 coroutines = "1.10.2"
-ksp-plugin = "2.3.6"
+ksp-plugin = "2.3.7"
 
 hilt = "2.59.2"
-navigation = "2.9.7"
+navigation = "2.9.8"
 room = "2.8.4"
 lifecycle = "2.10.0"
 camera = "1.6.0"
@@ -18,7 +18,7 @@ camera = "1.6.0"
 okhttp = "5.3.2"
 retrofit = "3.0.0"
 moshi = "1.15.2"
-guava = "33.5.0-android"
+guava = "33.6.0-android"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
@@ -94,7 +94,6 @@ junit = "junit:junit:4.13.2"
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-plugin" }
 safe-args = {id = "androidx.navigation.safeargs.kotlin", version.ref="navigation"}
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
