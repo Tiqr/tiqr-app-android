@@ -70,6 +70,8 @@ androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "
 google-android-material = "com.google.android.material:material:1.13.0"
 google-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 google-mlkit-barcode = "com.google.mlkit:barcode-scanning:17.3.0"
+google-play-services-base = "com.google.android.gms:play-services-base:18.10.0"
+google-mlkit-common = "com.google.mlkit:common:18.11.0"
 google-firebase-messaging = "com.google.firebase:firebase-messaging:25.0.1"
 
 okhttp-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
