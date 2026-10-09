@@ -2,6 +2,10 @@
 
 ## [Unreleased](https://github.com/SURFnet/tiqr-app-android/tree/HEAD)
 
+[4.2.4]
+
+- Remove beep sound from QR code scan
+
 [4.2.0]
 
 - Notify users if a newer version of this app is available
