@@ -33,7 +33,6 @@
             android:name="org.tiqr.core.MainActivity"
             android:exported="true"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
             android:taskAffinity=""
             android:theme="@style/AppTheme.Splash"
             android:windowSoftInputMode="adjustResize"
